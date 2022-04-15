@@ -1,59 +1,44 @@
-// import Button from "./button";
-// import styles from "./App.module.css";
-
-// function App() { // Component
-//   return (
-//     <div>
-//       <h1 className={styles.title}>Welcome back!!!</h1>
-//       <Button text={"Continue"} />
-//     </div>
-//   );
-// };
-
-// export default App;
-
-
 import { useState, useEffect } from "react";
 
-function App() {
-  const [counter, setCount] = useState(0); // array, state 초기값 0
-  // react 안에서 실행 중이므로 React 생략 가능
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setCount((prev) => prev + 1);
-  const onChange = (event) => setKeyword(event.target.value); // event listener
-  // console.log("I run all the time.");
+function Hello() {
+  // function byeFn() {
+  //   console.log("bye :(");
+  // };
 
-  useEffect(() => { // refresh 되도 코드가 한 번만 실행할 수 있게 보호해준다.
-    // console.log("CALL THE API...");
-    console.log("I run only once.");
+  // function hiFn() {
+  //   console.log("created :)");
+  //   return byeFn; // component가 언제 파괴될지 알 수 있다.
+  // };
+
+  // useEffect(() => {
+  //   console.log("hi :)");
+  //   return () => console.log("bye :(");
+  // }, []);
+
+  useEffect(function() {
+    console.log("hi :)");
+    return function() {
+      console.log("bye :(")
+    }
   }, []);
+  // useEffect(hiFn, []);
 
-  useEffect(() => {
-    // if(keyword != "" && keyword.length > 5) {
-    //   console.log("SEARCH FOR", keyword);
-    // }
-    console.log("I run when 'keyword' changes.");
-  }, [keyword]); // keyword가 변화할 때마다 코드를 실행할거라고 react.js에게 알려줌
+  // useEffect(() => {
+  //   console.log("created :)");
+  //   return () => console.log("destroyed :("); // component가 destroy될 때 실행
+  // }, []);
 
-  useEffect(() => {
-    console.log("I run when 'counter' changes.");
-  }, [counter]);
+  return <h1>Hello</h1>;
+};
 
-  useEffect(() => {
-    console.log("I run when keyword & counter change.");
-  }, [keyword, counter]);
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev);
 
   return (
     <div>
-      <input 
-        value={keyword} 
-        onChange={onChange} 
-        type="text" 
-        placeholder="Search here..." 
-      />
-      {/* value를 줘서 state와 연결 */}
-      <h1>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 };
