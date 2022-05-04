@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 // Movie Component
 function Movie({ id, mediumCoverImage, title, summary, genres }) { // props, parent component로부터 받아옴
     return <div>
-    <img src={mediumCoverImage} alt={title} />
-    <h2>
-        <Link to={`/movie/${id}`}>{title}</Link></h2>
-    <p>{summary}</p>
-    <ul>
-        {genres.map(g => 
-        <li key={g}>{g}</li>)}
-    </ul>
-</div>;
+        <img src={mediumCoverImage} alt={title} />
+        <h2>
+            <Link to={`/movie/${id}`}>{title}</Link></h2>
+        <p>{summary}</p>
+        <ul>
+            {genres.map(g => 
+            <li key={g}>{g}</li>)}
+        </ul>
+    </div>;
 };
 
 Movie.propTypes = {
