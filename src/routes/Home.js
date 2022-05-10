@@ -10,7 +10,7 @@ function Home() {
     // useEffect를 이용해서 getMoives를 호출. then을 사용하지 않기 위해!
     // fetch가 진행된 후에 movies는 json.data.movies가 되는 것
     const getMovies = async() => {
-        const res = await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`)
+        const res = await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`);
         const json = await res.json();
         setMovies(json.data.movies);
         setLoading(false);
