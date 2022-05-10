@@ -6,7 +6,7 @@ function Detail() {
     const [movies, setMovies] = useState([]);
 
     const { id } = useParams();
-    const getMovie = async () => {
+    const getMovies = async () => {
         const json = await (
             await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`))
             .json();
@@ -15,10 +15,12 @@ function Detail() {
         };
 
     useEffect(() => {
-        getMovie();
+        getMovies();
     }, []);
 
-    return <h1>Detail</h1>
+    return <div>
+        <h1>Detail</h1>
+    </div>
 };
 
 export default Detail;
